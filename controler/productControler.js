@@ -24,7 +24,7 @@ export const insertProduct = (req, res) => {
 // menampilkan data berdasarkan ID
 export const showProduct = (req, res) => {
     const id = req.params.id;
-    koneksi.query('SELECT * FROM products WHERE id_products = ?', [id], (err, results) => {
+    koneksi.query('SELECT * FROM products WHERE id_product = ?', [id], (err, results) => {
 
     // Jika err
         if (err) res.status(500).json({ Message: err });
@@ -43,7 +43,7 @@ export const showProduct = (req, res) => {
 export const updateProduct = (req, res) => {
     const id = req.params.id;
     const { nama, harga, id_category } = req.body;
-    koneksi.query('UPDATE products SET nama = ?, price = ?, id_category = ? WHERE id_products = ?', 
+    koneksi.query('UPDATE products SET nama = ?, price = ?, id_category = ? WHERE id_product = ?', 
         [nama, harga, id_category, id], 
         (err, results) => {
             // Jika err
@@ -57,7 +57,7 @@ export const updateProduct = (req, res) => {
 // Hapus data berdasarkan ID
 export const deleteProduct = (req, res) => {
     const id = req.params.id;
-    koneksi.query('DELETE FROM products WHERE id_products = ?', [id], (err, results) => {
+    koneksi.query('DELETE FROM products WHERE id_product = ?', [id], (err, results) => {
         // Jika err
         if (err) res.status(500).json({ Message: err });
         // Jika berhasil
